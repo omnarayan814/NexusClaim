@@ -1,4 +1,4 @@
-# ClaimSense
+# NexusClaim
 
 An AI-augmented claims processing platform that automates First Notice of Loss (FNOL) document extraction and routing. Built with FastAPI, Pydantic, and NVIDIA NIM.
 
