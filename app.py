@@ -1,4 +1,6 @@
 import os
+import sys
+from pathlib import Path
 import time
 import tempfile
 from collections import defaultdict
@@ -7,6 +9,9 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, JSONResponse
 from starlette.middleware.base import BaseHTTPMiddleware
 from dotenv import load_dotenv
+
+env_path = Path(__file__).parent / ".env"
+load_dotenv(dotenv_path=env_path)
 
 from services.document_parser import DocumentParser
 from services.extraction_agent import ExtractionAgent

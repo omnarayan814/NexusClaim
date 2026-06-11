@@ -486,6 +486,35 @@
         return new Promise(r => setTimeout(r, ms));
     }
 
+    // ===== Theme Toggle =====
+    const themeCheckbox = document.getElementById('themeCheckbox');
+    const sunIcon = document.getElementById('sunIcon');
+    const moonIcon = document.getElementById('moonIcon');
+
+    function applyTheme(isDark) {
+        document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+        themeCheckbox.checked = isDark;
+
+        // Highlight the active icon
+        if (isDark) {
+            sunIcon.classList.remove('active-icon');
+            moonIcon.classList.add('active-icon');
+        } else {
+            sunIcon.classList.add('active-icon');
+            moonIcon.classList.remove('active-icon');
+        }
+    }
+
+    // Load saved preference or default to light
+    const savedTheme = localStorage.getItem('claimsense_theme');
+    applyTheme(savedTheme === 'dark');
+
+    themeCheckbox.addEventListener('change', () => {
+        const isDark = themeCheckbox.checked;
+        applyTheme(isDark);
+        localStorage.setItem('claimsense_theme', isDark ? 'dark' : 'light');
+    });
+
     // ===== Initial Render =====
     updateTable();
     updateStats();
